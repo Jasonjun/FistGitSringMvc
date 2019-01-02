@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stocks.finstocks.pri.mapper.SysUserMapper" >
+  <resultMap id="userMap" type="com.stocks.finstocks.domain.dao.SysUser" >
+
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pass" property="passWord" jdbcType="VARCHAR" />
+    <result column="user_enable" property="userEnable" jdbcType="INTEGER" />
+  </resultMap>
+   <select id="selectOne" resultType="com.stocks.finstocks.domain.dao.SysUser" parameterType="com.stocks.finstocks.domain.dao.SysUser">
+	SELECT * from sys_user su where su.user_name=#{userName} and su.user_pass=#{passWord} and su.user_enable=0
+   </select>
+  <select id="getUserByUserNameAndPassword" resultMap="userMap" parameterType="com.stocks.finstocks.domain.dao.SysUser">
+	SELECT * from sys_user su where su.user_name=#{userName} and su.user_pass=#{passWord} and su.user_enable=0
+   </select>
+   <select id="queryUserByUserName" parameterType="java.lang.String" resultMap="userMap">
+	SELECT * from sys_user su where su.user_name=#{userName,jdbcType=VARCHAR}
+   </select>
+   <!--  >select id="selectUserByName" resultMap="UserMap">
+        select * from t_user where user_name = #{userName,jdbcType=VARCHAR}
+    </select-->
+    
+</mapper>
